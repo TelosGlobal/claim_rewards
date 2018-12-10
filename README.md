@@ -1,0 +1,63 @@
+# TELOS CLAIMREWARD script
+This document explains how to setup an automatic recurring claimreward action for bp's on TELOS.  This should work on other EOSIO chains with minimal changes.
+
+## OVERVIEW
+1.  First, we create a new permission "ACCOUNT/claimer" with a unique KEY
+
+- This unique key will only be allowed to claim tokens to YOUR account.  This way, if they key gets compromised it will do little or argueably "no" harm.
+
+2.  Next, we create a separate wallet "claim" and provide ONLY this unique KEY
+
+3.  Create a shell script "claimrewards.sh" to:
+- Unlock this wallet
+- Execute the claimrewards action
+- Lock the wallet
+
+4.  Setup a LOCAL USER cron job to run every 15 min so we get two chances to grab rewards during each reward period.
+
+
+## INSTALLATION
+1.  Create new EOS KEY Pair (there are may ways to do this).
+
+- NOTE: **SAVE the KEY info!**
+
+2.  Create permission:
+
+`teclos set account permission ACCOUNT_NAME claimer '{"threshold":1,"keys":[{"key":"YOUR_NEW_CLAIMER_PUB_KEY","weight":1}]}' "active" -p ACCOUNT_NAME@active`
+
+`teclos set action permission ACCOUNT_NAME eosio claimrewards claimer`
+
+3.  Create Wallet
+
+`teclos wallet create -n WALLET_NAME -f KEY_FILE_NAME`
+
+- NOTE: **SAVE the wallet key!**
+	
+4.  Add NEW key pair to the wallet
+
+`teclos wallet import -n WALLET_NAME`
+
+- paste PRIVATE key when prompted
+
+5.  LOCK THE WALLET (OPTIONAL STEP.  We do this so it's in correct state for the script)
+
+`teclos wallet lock -n WALLET_NAME`
+
+6.  Create the file "claimrewards.sh".  See file in this repo.
+
+7.  Make the file executable
+
+`sudo chmod 755 claimrewards.sh`
+
+8.  Setup LOCAL_USER crontab job
+
+- NOTE: Need to have local user added to /etc/cron.d/cron.allow
+- - If file doesn't exist, create it and all 2 lines:
+- - - root
+- - - LOCAL_USERNAME **<-replace with your specific username**
+
+`crontab -e`
+
+- ADD THE FOLLOWING LINE (*/15 will run every 15 mins):
+
+`*/15 * * * * /FULL_PATH/claimrewards.sh  >>/FULL_PATH/claims.log 2>&1`

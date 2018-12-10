@@ -43,6 +43,11 @@ This document explains how to setup an automatic recurring claimreward action fo
 
 `teclos wallet lock -n WALLET_NAME`
 
+5a. COPY THE WALLET from `$HOME/telos-wallet` folder to `$HOME/eosio-wallet' 
+- NOTE:  I'm not sure why, but seems teclos looks for this wallet in the eosio-wallet folder ¯\\_(ツ)_/¯
+
+`cp $HOME/telos-wallet/YOUR_WALLET_NAME.wallet $HOME/eosio-wallet/.`
+
 6.  Create the file "claimrewards.sh".  See file in this repo.
 
 7.  Make the file executable

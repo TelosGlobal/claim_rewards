@@ -63,9 +63,10 @@ This document explains how to setup an automatic recurring claimreward action fo
 
 `crontab -e`
 
-- ADD THE FOLLOWING LINE ( will run every top of the hour):
+- ADD THE FOLLOWING LINE ( will run every top of the hour ):
 
-`0 * * * * /FULL_PATH/claimrewards.sh  >>/FULL_PATH/claims.log 2>&1`
+`5 * * * * /FULL_PATH/claimrewards.sh  >>/FULL_PATH/claims.log 2>&1`
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTM0NzQ3NDU2OSwxNTYxMzk4NzM4XX0=
+eyJoaXN0b3J5IjpbMTU3ODYwNDMzOCwxMzQ3NDc0NTY5LDE1Nj
+EzOTg3MzhdfQ==
 -->

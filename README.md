@@ -13,7 +13,7 @@ This document explains how to setup an automatic recurring claimreward action fo
 - Execute the claimrewards action
 - Lock the wallet
 
-4.  Setup a LOCAL USER cron job to run every 15 min so we get two chances to grab rewards during each reward period.
+4.  Setup a LOCAL USER cron job to run every hour.  (On TELOS, unclaimed rewards don't expire, so we don't need
 
 
 ## INSTALLATION
@@ -66,3 +66,6 @@ This document explains how to setup an automatic recurring claimreward action fo
 - ADD THE FOLLOWING LINE (*/15 will run every 15 mins):
 
 `*/15 * * * * /FULL_PATH/claimrewards.sh  >>/FULL_PATH/claims.log 2>&1`
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbMjA4NDE2ODY5NF19
+-->

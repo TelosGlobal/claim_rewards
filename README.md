@@ -13,11 +13,11 @@ This document explains how to setup an automatic recurring claimreward action fo
 - Execute the claimrewards action
 - Lock the wallet
 
-4.  Setup a LOCAL USER cron job to run every hour.  (On TELOS, unclaimed rewards don't expire, so we don't need15 min so we get two chances to grab rewards during each reward period.
+4.  Setup a LOCAL USER cron job to run every hour.  (On TELOS, unclaimed rewards don't expire, so we don't need15 min so we get two chances to grab rewards during each reward period.worry about missing a claim)
 
 
 ## INSTALLATION
-1.  Create new EOS KEY Pair (there are may ways to do this).
+1.  Create new EOS KEY Pair (there are many ways to do this).
 
 - NOTE: **SAVE the KEY info!**
 
@@ -43,7 +43,7 @@ This document explains how to setup an automatic recurring claimreward action fo
 
 `teclos wallet lock -n WALLET_NAME`
 
-5a. COPY THE WALLET from `$HOME/telos-wallet` folder to `$HOME/eosio-wallet' 
+5a. COPY THE WALLET from `$HOME/telos-wallet` folder to `$HOME/eosio-wallet 
 - NOTE:  I'm not sure why, but seems teclos looks for this wallet in the eosio-wallet folder ¯\\_(ツ)_/¯
 
 `cp $HOME/telos-wallet/YOUR_WALLET_NAME.wallet $HOME/eosio-wallet/.`
@@ -63,9 +63,9 @@ This document explains how to setup an automatic recurring claimreward action fo
 
 `crontab -e`
 
-- ADD THE FOLLOWING LINE (*/15 will run every 15 mins):
+- ADD THE FOLLOWING LINE ( will run every top of the 15 mins):
 
 `*/15 * * * * /FULL_PATH/claimrewards.sh  >>/FULL_PATH/claims.log 2>&1`
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTU2MTM5ODczOCwyMDg0MTY4Njk0XX0=
+eyJoaXN0b3J5IjpbODA1Mzc2ODkxLDE1NjEzOTg3MzhdfQ==
 -->

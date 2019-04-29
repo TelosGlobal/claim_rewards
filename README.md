@@ -1,4 +1,4 @@
-# TELOS CLAIMREWARD script
+# TELOS CLAIMREWARDS script
 This document explains how to setup an automatic recurring claimreward action for bp's on TELOS.  This should work on other EOSIO chains with minimal changes.
 
 ## OVERVIEW
@@ -13,7 +13,7 @@ This document explains how to setup an automatic recurring claimreward action fo
 - Execute the claimrewards action
 - Lock the wallet
 
-4.  Setup a LOCAL USER cron job to run every hour.  (On TELOS, unclaimed rewards don't expire, so we don't need15 min so we get two chances to grab rewards during each reward period.worry about missing a claim)
+4.  Setup a LOCAL USER cron job to run every hour.  (On TELOS, unclaimed rewards don't expire, so we don't need to worry about missing a claim)
 
 
 ## INSTALLATION
@@ -23,28 +23,28 @@ This document explains how to setup an automatic recurring claimreward action fo
 
 2.  Create permission:
 
-`teclos set account permission ACCOUNT_NAME claimer '{"threshold":1,"keys":[{"key":"YOUR_NEW_CLAIMER_PUB_KEY","weight":1}]}' "active" -p ACCOUNT_NAME@active`
+`cleos set account permission ACCOUNT_NAME claimer '{"threshold":1,"keys":[{"key":"YOUR_NEW_CLAIMER_PUB_KEY","weight":1}]}' "active" -p ACCOUNT_NAME@active`
 
-`teclos set action permission ACCOUNT_NAME eosio claimrewards claimer`
+`cleos set action permission ACCOUNT_NAME eosio claimrewards claimer`
 
 3.  Create Wallet
 
-`teclos wallet create -n WALLET_NAME -f KEY_FILE_NAME`
+`cleos wallet create -n WALLET_NAME -f KEY_FILE_NAME`
 
 - NOTE: **SAVE the wallet key!**
 	
 4.  Add NEW key pair to the wallet
 
-`teclos wallet import -n WALLET_NAME`
+`cleos wallet import -n WALLET_NAME`
 
 - paste PRIVATE key when prompted
 
 5.  LOCK THE WALLET (OPTIONAL STEP.  We do this so it's in correct state for the script)
 
-`teclos wallet lock -n WALLET_NAME`
+`cleos wallet lock -n WALLET_NAME`
 
 5a. COPY THE WALLET from `$HOME/telos-wallet` folder to `$HOME/eosio-wallet 
-- NOTE:  I'm not sure why, but seems teclos looks for this wallet in the eosio-wallet folder ¯\\_(ツ)_/¯
+- NOTE:  I'm not sure why, but seems tecleos looks for this wallet in the eosio-wallet folder ¯\\_(ツ)_/¯
 
 `cp $HOME/telos-wallet/YOUR_WALLET_NAME.wallet $HOME/eosio-wallet/.`
 
@@ -66,6 +66,7 @@ This document explains how to setup an automatic recurring claimreward action fo
 - ADD THE FOLLOWING LINE ( will run every top of the hour ):
 
 `5 * * * * /FULL_PATH/claimrewards.sh  >>/FULL_PATH/claims.log 2>&1`
+
 <!--stackedit_data:
 eyJoaXN0b3J5IjpbMTU3ODYwNDMzOCwxMzQ3NDc0NTY5LDE1Nj
 EzOTg3MzhdfQ==

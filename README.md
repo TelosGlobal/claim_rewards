@@ -44,7 +44,7 @@ This document explains how to setup an automatic recurring claimreward action fo
 `cleos wallet lock -n WALLET_NAME`
 
 5a. COPY THE WALLET from `$HOME/telos-wallet` folder to `$HOME/eosio-wallet 
-- NOTE:  I'm not sure why, but seems tecleos looks for this wallet in the eosio-wallet folder ¯\\_(ツ)_/¯
+- NOTE:  I'm not sure why, but seems cleos looks for this wallet in the eosio-wallet folder ¯\\_(ツ)_/¯
 
 `cp $HOME/telos-wallet/YOUR_WALLET_NAME.wallet $HOME/eosio-wallet/.`
 
